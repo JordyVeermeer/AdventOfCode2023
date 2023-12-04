@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Day1Function();
+        Day1FunctionPart1();
 
     }
 
-    private static void Day1Function() {
+    private static void Day1FunctionPart1() {
         int sum = 0;
 
         try {
@@ -18,8 +18,9 @@ public class Main {
 
             while (in.ready()) {
                 String line = in.readLine();
-                int s = Day1.parseInput(line);
-                System.out.printf("%s: %d\n", line, s);
+                String parsedLine = Day1.parseInputPart2(line);
+                int s = Day1.parseInputPart1(parsedLine);
+                System.out.printf("%s: %d\n", parsedLine, s);
                 sum += s;
             }
 
@@ -30,5 +31,9 @@ public class Main {
         }
 
         System.out.println("The sum is: " + sum);
+    }
+
+    private static void Day1FunctionPart2() {
+
     }
 }
