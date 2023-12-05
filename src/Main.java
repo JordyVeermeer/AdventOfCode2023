@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         //Day1Part1();
-        Day2Part1();
+        Day2Part2();
     }
 
     private static void Day1Part1() {
@@ -57,5 +57,26 @@ public class Main {
 
         System.out.println("The sum is: " + sum);
 
+    }
+
+    private static void Day2Part2() {
+        int sum = 0;
+
+        try {
+            FileReader fileReader = new FileReader("inputs/input_day2.txt");
+            BufferedReader in = new BufferedReader(fileReader);
+
+            while(in.ready()) {
+                String line = in.readLine();
+                int result = Day2.parseInputPart2(line);
+                System.out.printf("%s --> result: %d%n", line, result);
+                sum += result;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("The sum is: " + sum);
     }
 }

@@ -32,4 +32,37 @@ public class Day2 {
         }
         return id;
     }
+
+    public static int parseInputPart2(String input) {
+        int red = 0;
+        int blue = 0;
+        int green = 0;
+
+        String[] sets = input.split(":")[1].split(";");
+
+        for (String s : sets) {
+            String[] colors = s.split(",");
+            for (String color : colors) {
+                String colorStripped = color.strip();
+                String[] str = colorStripped.split(" ");
+
+                switch (str[1]) {
+                    case "blue" -> {
+                        if (Integer.parseInt(str[0]) > blue) blue = Integer.parseInt(str[0]);
+                    }
+                    case "green" -> {
+                        if (Integer.parseInt(str[0]) > green) green = Integer.parseInt(str[0]);
+                    }
+                    case "red" -> {
+                        if (Integer.parseInt(str[0]) > red) red = Integer.parseInt(str[0]);
+                    }
+                }
+
+            }
+        }
+
+        //System.out.printf("red: %d, blue: %d, green: %d%n", red, blue, green);
+
+        return red * green * blue;
+    }
 }
