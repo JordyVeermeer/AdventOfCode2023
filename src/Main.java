@@ -5,15 +5,15 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Day1FunctionPart1();
-
+        //Day1Part1();
+        Day2Part1();
     }
 
-    private static void Day1FunctionPart1() {
+    private static void Day1Part1() {
         int sum = 0;
 
         try {
-            FileReader fileReader = new FileReader("input.txt");
+            FileReader fileReader = new FileReader("inputs/input_day1.txt");
             BufferedReader in = new BufferedReader(fileReader);
 
             while (in.ready()) {
@@ -33,7 +33,29 @@ public class Main {
         System.out.println("The sum is: " + sum);
     }
 
-    private static void Day1FunctionPart2() {
+    private static void Day1Part2() {
+        // adjusted Day1FunctionPart1()
+    }
+
+    private static void Day2Part1() {
+        int sum = 0;
+
+        try {
+            FileReader fileReader = new FileReader("inputs/input_day2.txt");
+            BufferedReader in = new BufferedReader(fileReader);
+
+            while(in.ready()) {
+                String line = in.readLine();
+                int result = Day2.parseInputPart1(line);
+                System.out.printf("%s: %d%n", line, result);
+                sum += result;
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("The sum is: " + sum);
 
     }
 }

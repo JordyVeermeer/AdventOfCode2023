@@ -68,7 +68,6 @@ public class Day1 {
         // 2. use previous function to parse number from value
 
         StringBuilder result = new StringBuilder();
-        int pointer = 0;
         StringBuilder temp = new StringBuilder();
 
         String[] keys = numberMap.keySet().toArray(new String[]{});
@@ -78,8 +77,7 @@ public class Day1 {
             temp.append(input.toCharArray()[i]);
 
             // check if temp contains number in string form
-            for (int y = 0; y < keys.length; y++) {
-                String s = keys[y];
+            for (String s : keys) {
                 int index = temp.indexOf(s);
                 if (index != -1) {
                     // replace string with integer value if found & append to result
