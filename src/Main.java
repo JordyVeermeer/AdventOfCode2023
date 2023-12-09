@@ -6,7 +6,9 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
         //Day1Part1();
-        Day2Part2();
+        //Day2Part2();
+        //Day3.parseInputPart1();
+        Day4.parseInputPart1();
     }
 
     private static void Day1Part1() {
@@ -79,4 +81,6 @@ public class Main {
 
         System.out.println("The sum is: " + sum);
     }
+
+
 }
