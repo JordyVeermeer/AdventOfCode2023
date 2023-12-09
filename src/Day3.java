@@ -6,45 +6,57 @@ import java.util.List;
 public class Day3 {
 
     public static void parseInputPart1() {
-        //List<String> symbols = List.of("*", "#", "+", "$", "+", "=", "/", "%", "@", "&", "#");
-        int sum = 0;
         char[][] input = readFileIntoCharArray();
+        int sum = 0;
+
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[i].length; j++) {
+                System.out.print(input[i][j]);
+            }
+            System.out.println();
+        }
+
         String number = "";
         boolean keepNumber = false;
 
-        for (int i = 1; i < input.length - 1; i++) {
-            for (int j = 1; j < input[i].length - 1; j++) {
-                if (input[i][j] >= '0' && input[i][j] <= '9') {
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[i].length; j++) {
+                // check if digit
+                if (Character.isDigit(input[i][j])) {
                     number += input[i][j];
-                    if (checkIfDigitValid(input, i, j)){
+                    // Check for adjacent symbol
+                    if (checkIfDigitValid(input, i, j)) {
                         keepNumber = true;
                     }
                 } else {
-                    if (keepNumber && !number.isEmpty()){
+                    if (keepNumber && !number.isEmpty()) {
+                        System.out.println(number + " is a part number");
                         sum += Integer.parseInt(number);
+                        keepNumber = false;
                     }
-
-                    keepNumber = false;
                     number = "";
                 }
 
             }
-
-            if (keepNumber && !number.isEmpty()){
-                sum+=Integer.parseInt(number);
-            }
-
-            keepNumber = false;
         }
-
         System.out.println("Sum is: " + sum);
+    }
 
-    };
+    public static void parseInputPart2() {
+        char[][] input = readFileIntoCharArray();
+
+        // Look for '*'
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j < input[i].length; j++) {
+
+            }
+        }
+    }
 
     private static boolean checkIfDigitValid(char[][] input, int i, int y) {
         // i = rows
         // y = columns
-        return input[i + 1][y] != '.' || input[i - 1][y] != '.' || input[i + 1][y + 1] != '.' || input[i - 1][y + 1] != '.' || input[i - 1][y - 1] != '.'
+        return input[i + 1][y] != '.' || input[i - 1][y] != '.' || input[i + 1][y + 1] != '.' || input[i - 1][y + 1] != '.' || input[i - 1][y - 1] != '.' || input[i + 1][y - 1] != '.'
                 || !isDigitOrDot(input[i][y + 1]) || !isDigitOrDot(input[i][y - 1]);
     }
 
