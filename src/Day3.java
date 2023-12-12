@@ -48,9 +48,17 @@ public class Day3 {
         // Look for '*'
         for (int i = 0; i < input.length; i++) {
             for (int j = 0; j < input[i].length; j++) {
-
+                if (input[i][j] == '*' && hasAdjacentDigit(input, i, j)) {
+                    System.out.println("valid gear found");
+                    // check
+                }
             }
         }
+    }
+
+    private static boolean hasAdjacentDigit(char[][] input, int i, int j) {
+        return Character.isDigit(input[i - 1][j - 1]) || Character.isDigit(input[i - 1][j]) || Character.isDigit(input[i - 1][j + 1]) || Character.isDigit(input[i][j - 1])
+                || Character.isDigit(input[i][j + 1]) || Character.isDigit(input[i + 1][j - 1]) || Character.isDigit(input[i + 1][j]) || Character.isDigit(input[i + 1][j + 1]);
     }
 
     private static boolean checkIfDigitValid(char[][] input, int i, int y) {
