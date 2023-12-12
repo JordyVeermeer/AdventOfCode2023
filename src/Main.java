@@ -8,7 +8,10 @@ public class Main {
         //Day1Part1();
         //Day2Part2();
         //Day3.parseInputPart1();
-        Day4.parseInputPart1();
+        //Day3.parseInputPart2();
+        //Day4.parseInputPart1();
+        //Day4.parseInputPart2();
+        Day5.parseInputPart1();
     }
 
     private static void Day1Part1() {
