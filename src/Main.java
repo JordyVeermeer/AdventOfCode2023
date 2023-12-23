@@ -13,7 +13,8 @@ public class Main {
         //Day4.parseInputPart2();
         //Day5.parseInputPart1();
         //Day5.parseInputPart2(); // 231522441 too high? 50855035 right answer
-        Day6.parseInputPart1();
+        //Day6.parseInputPart1();
+        Day6.parseInputPart2();
     }
 
     private static void Day1Part1() {
