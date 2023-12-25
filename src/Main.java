@@ -15,7 +15,7 @@ public class Main {
         //Day5.parseInputPart2(); // 231522441 too high? 50855035 right answer
         //Day6.parseInputPart1();
         //Day6.parseInputPart2();
-        Day7.parseInputPart1();
+        Day7.parseInput(true); // set to true for part 2 (with jokers)
     }
 
     private static void Day1Part1() {

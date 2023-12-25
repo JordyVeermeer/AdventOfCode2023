@@ -5,7 +5,7 @@ import java.util.*;
 
 public class Day7 {
 
-    public static void parseInputPart1() {
+    public static void parseInput(boolean withJoker) {
         String[][] input;
         String[][] inputWithValue;
 
@@ -35,12 +35,15 @@ public class Day7 {
         // Check values for each hand
         for (int i = 0; i < input.length; i++) {
             System.out.println("Checking " + input[i][0]);
-            int value = checkHand(input[i][0]);
+            int value = checkHand(input[i][0], withJoker);
 
             inputWithValue[i][0] = input[i][0];
             inputWithValue[i][1] = input[i][1];
             inputWithValue[i][2] = String.valueOf(value);
         }
+
+        // Only for part 2: replace value of a joker to be the lowest value
+        cards.replace("J", 1);
 
         // Sort inputWithValue by value and then by strongest card
         Comparator<String[]> comparatorByValue = Comparator.comparingInt(a -> Integer.parseInt(a[2]));
@@ -68,11 +71,12 @@ public class Day7 {
         System.out.println("Sum: " + sum);
     }
 
-    private static int checkHand(String hand) {
+    private static int checkHand(String hand, boolean withJoker) {
         final int FiveOfAKind = 7, FourOfAKind = 6, FullHouse = 5, ThreeOfAKind = 4, TwoPair = 3, OnePair = 2, HighCard = 1;
 
         Map<Character, Integer> mappedHand = new HashMap<>();
 
+        // Map hand string
         for (char c : hand.toCharArray()) {
             if (mappedHand.containsKey(c)) {
                 mappedHand.put(c, mappedHand.get(c) + 1);
@@ -85,6 +89,26 @@ public class Day7 {
             System.out.printf("%d instances of %s%n", mappedHand.get(c), c);
         }
 
+        // Handle jokers
+        if (withJoker && mappedHand.containsKey('J')) {
+            Map.Entry<Character, Integer> max = null;
+            for (Map.Entry<Character, Integer> entry : mappedHand.entrySet()) {
+                if (entry.getKey() != 'J' && (max == null || max.getValue() < entry.getValue())) {
+                    max = entry;
+                }
+            }
+
+            if (mappedHand.get('J') != 5) {
+                System.out.printf("Adding %d jokers to %s%n", mappedHand.get('J'), max.getKey());
+                mappedHand.replace(max.getKey(), max.getValue() + mappedHand.get('J'));
+                mappedHand.remove('J');
+                for (Map.Entry<Character, Integer> entry : mappedHand.entrySet()) {
+                    System.out.println(entry.toString());
+                }
+            }
+        }
+
+        // Return hand value
         switch (mappedHand.size()) {
             case 1 -> {
                 System.out.printf("%s: Five of a kind%n", hand);
